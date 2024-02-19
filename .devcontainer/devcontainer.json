@@ -1,0 +1,93 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
+{
+  "name": "Newrelic Devcontainer",
+  // Use a Docker file.
+  "build": {
+    // Path is relative to the devcontainer.json file.
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
+  ],
+  // "shutdownAction": "none",
+  "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
+  "workspaceFolder": "${localWorkspaceFolder}",
+  // Set the container environment variables in local.
+  // "runArgs": ["--env-file", ".env"],
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "version": "latest",
+      "moby": false,
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "akamud.vscode-javascript-snippet-pack",
+        "bierner.markdown-preview-github-styles",
+        "chouzz.vscode-better-align",
+        "christian-kohler.npm-intellisense",
+        "christian-kohler.path-intellisense",
+        "chrmarti.regex",
+        "codezombiech.gitignore",
+        "darkriszty.markdown-table-prettify",
+        "DavidAnson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "DeepInThought.vscode-shell-snippets",
+        "dlech.chmod",
+        "donjayamanne.githistory",
+        "EditorConfig.EditorConfig",
+        "esbenp.prettier-vscode",
+        "GitHub.codespaces",
+        "HashiCorp.terraform",
+        "humao.rest-client",
+        "IBM.output-colorizer",
+        "jeremyljackson.vs-docblock",
+        "joelalejandro.nrql-language",
+        "kumar-harsh.graphql-for-vscode",
+        "lafe.contextualduplicate",
+        "mads-hartmann.bash-ide-vscode",
+        "maximerouiller.slugify-vscode",
+        "mechatroner.rainbow-csv",
+        "mikestead.dotenv",
+        "ms-azuretools.vscode-docker",
+        "ms-python.python",
+        "ms-vscode-remote.remote-wsl",
+        "oouo-diogo-perdigao.docthis",
+        "redhat.vscode-yaml",
+        "richie5um2.vscode-sort-json",
+        "run-at-scale.terraform-doc-snippets",
+        "shd101wyy.markdown-preview-enhanced",
+        "stkb.rewrap",
+        "timonwong.shellcheck",
+        "tomoki1207.selectline-statusbar",
+        "tomphilbin.lodash-snippets",
+        "Tyriar.sort-lines",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "wmaurer.change-case",
+        "xabikos.JavaScriptSnippets"
+      ],
+      "settings": {
+        "remote.autoForwardPorts": false
+      }
+    }
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [4444,7900],
+  // Use 'onCreateCommand' to run commands after the container is created.
+  "postCreateCommand": {
+    "get-update": "apt-get update",
+    "npm install": "npm install"
+  },
+  // "portsAttributes": {"3000": {"label": "Application port"}},
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  "remoteUser": "root"
+}
